@@ -1,0 +1,85 @@
+
+const express = require('express');
+const app = express();
+
+// Define a simple route
+app.get('/', (req, res) => {
+    res.send("Welcome to ExpressJS");
+});
+
+// Handling routes
+app.get('/home', (req, res) => {
+    res.send("This is Home Page");
+});
+
+// Route Parameters
+app.get('/student/:id', (req, res) => {
+    res.send("Student ID: " + req.params.id);
+});
+
+// Query Parameters
+app.get('/search', (req, res) => {
+    res.send("Search Name: " + req.query.name);
+});
+
+// URL Building
+app.get('/user/:id', (req, res) => {
+    const url = '/user/' + req.params.id;
+    res.send("Generated URL: " + url);
+});
+
+// Start server
+app.listen(3000, () => {
+    console.log("Server running at http://localhost:3000");
+});
+
+
+const express = require('express');
+const app = express();
+
+app.use(express.json());
+
+// Temporary data storage
+let students = [];
+
+// Accept data using POST
+app.post('/students', (req, res) => {
+    students.push(req.body);
+    res.send("Student added successfully");
+});
+
+// Retrieve data using GET
+app.get('/students', (req, res) => {
+    res.json(students);
+});
+
+// Delete data using DELETE
+app.delete('/students/:id', (req, res) => {
+    const id = req.params.id;
+
+    students = students.filter(student => student.id != id);
+
+    res.send("Student deleted successfully");
+});
+
+// Start server
+app.listen(3000, () => {
+    console.log("Server running at http://localhost:3000");
+});
+
+
+### POST - Add Student
+POST http://localhost:3000/students
+Content-Type: application/json
+
+{
+    "id": 1,
+    "name": "Ravi",
+    "age": 20
+}
+
+### GET - Retrieve Students
+GET http://localhost:3000/students
+
+### DELETE - Delete Student
+DELETE http://localhost:3000/students/1
