@@ -1,0 +1,98 @@
+
+import React, { useState } from 'react';
+
+function Student(props) {
+  const [marks, setMarks] = useState(80);
+
+  return (
+    <div>
+      <h2>Student Details</h2>
+      <p>Name: {props.name}</p>
+      <p>Roll No: {props.rollno}</p>
+      <p>Marks: {marks}</p>
+
+      <button onClick={() => setMarks(marks + 5)}>
+        Increase Marks
+      </button>
+    </div>
+  );
+}
+
+function App() {
+  return (
+    <div>
+      <Student name="Rahul" rollno="101" />
+    </div>
+  );
+}
+
+export default App;
+
+
+  
+import React from 'react';
+import './App.css';
+
+function App() {
+  const students = [
+    { id: 1, name: 'Rahul', marks: 85 },
+    { id: 2, name: 'Ravi', marks: 90 },
+    { id: 3, name: 'Priya', marks: 95 }
+  ];
+
+  return (
+    <div className="container">
+      <h1>Student Details</h1>
+
+      {students.map((student) => (
+        <div className="card" key={student.id}>
+          <h2>{student.name}</h2>
+          <p>Marks: {student.marks}</p>
+        </div>
+      ))}
+    </div>
+  );
+}
+
+export default App;
+
+
+ 
+.container {
+  text-align: center;
+  background-color: lightblue;
+  padding: 20px;
+}
+
+.card {
+  background-color: white;
+  margin: 10px;
+  padding: 15px;
+  border-radius: 10px;
+}
+
+h1 {
+  color: blue;
+}
+
+
+  
+$bgcolor: lightblue;
+$textcolor: blue;
+
+.container {
+  text-align: center;
+  background-color: $bgcolor;
+  padding: 20px;
+
+  h1 {
+    color: $textcolor;
+  }
+
+  .card {
+    background-color: white;
+    margin: 10px;
+    padding: 15px;
+    border-radius: 10px;
+  }
+}
