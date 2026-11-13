@@ -1,0 +1,32 @@
+
+import React from 'react';
+
+function App() {
+  const students = ["Ravi", "Kiran", "Arjun", "Rahul"];
+
+  return (
+    <div>
+      <h1>Student List</h1>
+      <ul>
+        {students.map((student, index) => (
+          <li key={index}>{student}</li>
+        ))}
+      </ul>
+    </div>
+  );
+}
+
+export default App;
+
+
+use college
+
+db.createCollection("students")db.students.insert({
+  rollno: 101,
+  name: "Ravi",
+  branch: "CSE",
+  marks: 85
+})db.students.find()db.students.find({rollno: 101})db.students.update(
+  {rollno: 101},
+  {$set: {marks: 90}}
+)db.students.remove({rollno: 101})
