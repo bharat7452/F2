@@ -1,0 +1,59 @@
+
+const express = require('express');
+const app = express();
+
+// Set EJS as templating engine
+app.set('view engine', 'ejs');
+
+// Route
+app.get('/', (req, res) => {
+    res.render('home', {
+        name: 'Ravi',
+        age: 20
+    });
+});
+
+app.listen(3000, () => {
+    console.log('Server running on port 3000');
+});
+
+
+<html>
+<head>
+    <title>Home Page</title>
+</head>
+<body>
+    <h1>Welcome <%= name %></h1>
+    <p>Age: <%= age %></p>
+</body>
+</html>
+
+
+const express = require('express');
+const app = express();
+
+// Middleware to read form data
+app.use(express.urlencoded({ extended: true }));
+
+// Display form
+app.get('/', (req, res) => {
+    res.send(`
+        <form action="/submit" method="POST">
+            Name: <input type="text" name="name"><br><br>
+            Age: <input type="number" name="age"><br><br>
+            <button type="submit">Submit</button>
+        </form>
+    `);
+});
+
+// Accept form data
+app.post('/submit', (req, res) => {
+    res.send(
+        "Name: " + req.body.name +
+        "<br>Age: " + req.body.age
+    );
+});
+
+app.listen(3000, () => {
+    console.log('Server running on port 3000');
+});
