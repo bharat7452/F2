@@ -1,0 +1,15 @@
+use collegedb.createCollection("students")show dbsshow collectionsdb.students.drop()db.dropDatabase()
+
+
+use collegedb.students.insertMany([
+  {rollno: 101, name: "Ravi", marks: 85},
+  {rollno: 102, name: "Kiran", marks: 90},
+  {rollno: 103, name: "Arjun", marks: 75},
+  {rollno: 104, name: "Rahul", marks: 95},
+  {rollno: 105, name: "Raju", marks: 80}
+])db.students.find()db.students.find({name: "Ravi"})db.students.find().limit(3)db.students.find().sort({marks: 1})db.students.find().sort({marks: -1})db.students.createIndex({rollno: 1})db.students.aggregate([
+  {$group: {
+    _id: null,
+    averageMarks: {$avg: "$marks"}
+  }}
+])
